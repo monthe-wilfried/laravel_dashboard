@@ -42,20 +42,20 @@
                             @include('alerts.feedback', ['field' => 'professorship_id'])
                         </div>
                         @endif
-
+                        <br>
                         <div class="form-group">
                             <label>{{ __('Role') }}</label>
                             <input type="text" name="role" class="form-control" value="{{ old('role', $user->role->name) }}" readonly>
                             @include('alerts.feedback', ['field' => 'email'])
                         </div>
-
+                        <br>
                         <label>{{ __('Picture') }}</label>
                         <input type="file" name="file" class="form-control" >
                         @include('alerts.feedback', ['field' => 'file'])
 
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-fill btn-primary">{{ __('Save') }}</button>
+                        <button type="submit" class="btn btn-fill btn-info">{{ __('Save') }}</button>
                     </div>
                 {!! Form::close() !!}
 {{--                </form>--}}

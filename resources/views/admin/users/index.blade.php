@@ -407,7 +407,7 @@
                                 <h4 class="card-title">Users</h4>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{route('user.create')}}" class="btn btn-sm btn-primary">Add user</a>
+                                <a href="{{route('user.create')}}" class="btn btn-sm btn-info">Add user</a>
                             </div>
                         </div>
                     </div>
@@ -439,14 +439,14 @@
                                                     @csrf
                                                     @method('put')
                                                     <input type="hidden" name="is_active" value="0">
-                                                    <input type="submit" value="Off" class="btn-sm btn-success">
+                                                    <input type="submit" value="On" class="btn-sm btn-default">
                                                 </form>
                                             @else
                                                 <form action="{{route('user.update', $user->id)}}" method="post">
                                                     @csrf
                                                     @method('put')
                                                     <input type="hidden" name="is_active" value="1">
-                                                    <input type="submit" value="On" class="btn-sm btn-danger">
+                                                    <input type="submit" value="off" class="btn-sm btn-danger">
                                                 </form>
                                             @endif
                                         </td>

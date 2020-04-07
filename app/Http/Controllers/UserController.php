@@ -34,10 +34,34 @@ class UserController extends Controller
 
     }
     /**
-     * Update the user
+     * Show the form for creating a user
      *
-     * @param
      */
+    public function create()
+    {
+        $roles = Role::pluck('name', 'id')->all();
+        $professorships = Professorship::pluck('name', 'id')->all();
+        return view('admin.users.create', compact('roles', 'professorships'));
+    }
+    /**
+     * create a user
+     *
+     */
+    public function store(UserRequest $request)
+    {
+        $input = $request->all();
+        if($file = $request->file('file')){
+            $name = time().$file->getClientOriginalName();
+            $file->move('black/img', $name);
+            $photo = Photo::create(['file'=>$name]);
+            $input['photo_id'] = $photo->id;
+        }
+        $input['password'] = Hash::make($request->get('password'));
+        $user = User::create($input);
+        return redirect()->route('user.edit', $user->id)
+            ->withStatus(__('User successfully created.'));
+
+    }
     /**
      * Update the profile
      *

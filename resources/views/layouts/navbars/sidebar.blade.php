@@ -35,6 +35,9 @@
                         <li @if ($pageSlug == 'edit_user') class="active " @endif>
 
                         </li>
+                        <li @if ($pageSlug == 'create_user') class="active " @endif>
+
+                        </li>
                     </ul>
                 </div>
             </li>
