@@ -32,7 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController');
-	Route::put('status', ['as'=>'user.status', 'uses'=>'UserController@updateStatus']);
+	Route::put('update', ['as'=>'user.userUpdate', 'uses'=>'UserController@userUpdate']);
     Route::resource('professorships', 'ProfessorshipController');
     Route::resource('publications', 'PublicationController');
     Route::resource('roles', 'RoleController');

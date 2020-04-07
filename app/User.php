@@ -22,7 +22,8 @@ class User extends Authenticatable
         'role_id',
         'photo_id',
         'professorship_id',
-        'biography'
+        'biography',
+        'is_active'
     ];
 
     /**

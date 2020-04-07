@@ -435,18 +435,18 @@
                                         <td>{{$user->professorship->name ?? 'Not defined'}}</td>
                                         <td>
                                             @if($user->is_active == 1)
-                                                <form action="{{route('user.status', $user->id)}}" method="post">
+                                                <form action="{{route('user.update', $user->id)}}" method="post">
                                                     @csrf
                                                     @method('put')
                                                     <input type="hidden" name="is_active" value="0">
                                                     <input type="submit" value="Off" class="btn-sm btn-success">
                                                 </form>
                                             @else
-                                                <form action="{{route('user.status', $user->id)}}" method="post">
+                                                <form action="{{route('user.update', $user->id)}}" method="post">
                                                     @csrf
                                                     @method('put')
                                                     <input type="hidden" name="is_active" value="1">
-                                                    <input type="submit" value="On" class="btn-sm btn-success">
+                                                    <input type="submit" value="On" class="btn-sm btn-danger">
                                                 </form>
                                             @endif
                                         </td>

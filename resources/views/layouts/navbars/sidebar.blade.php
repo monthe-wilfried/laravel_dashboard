@@ -32,6 +32,9 @@
                                 <p>{{ __('All Users') }}</p>
                             </a>
                         </li>
+                        <li @if ($pageSlug == 'edit_user') class="active " @endif>
+
+                        </li>
                     </ul>
                 </div>
             </li>

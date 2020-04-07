@@ -29,7 +29,7 @@ class ProfileController extends Controller
      */
     public function update(ProfileRequest $request)
     {
-        $input = $request->all;
+        $input = $request->all();
         if($file = $request->file('file')){
             $name = time().$file->getClientOriginalName();
             $file->move('black/img', $name);
