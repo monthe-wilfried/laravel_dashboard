@@ -28,7 +28,7 @@
                         </li>
                         <li @if ($pageSlug == 'users') class="active " @endif>
                             <a href="{{ route('user.index')  }}">
-                                <i class="tim-icons icon-bullet-list-67"></i>
+                                <i class="tim-icons icon-badge"></i>
                                 <p>{{ __('All Users') }}</p>
                             </a>
                         </li>
@@ -43,9 +43,12 @@
             </li>
             <li @if ($pageSlug == 'professorships') class="active " @endif>
                 <a href="{{ route('professorships.index') }}">
-                    <i class="tim-icons icon-pin"></i>
+                    <i class="tim-icons icon-shape-star"></i>
                     <p>{{ __('Professorships') }}</p>
                 </a>
+            </li>
+            <li @if ($pageSlug == 'edit_professorship') class="active " @endif>
+
             </li>
             <li @if ($pageSlug == 'publications') class="active " @endif>
                 <a href="{{ route('publications.index') }}">

@@ -45,6 +45,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $table = 'users';
+
     public function publications(){
         return $this->belongsToMany('App\Publication');
     }
@@ -61,9 +63,16 @@ class User extends Authenticatable
         return $this->belongsTo('App\Photo');
     }
 
-    // Accessor
+    // Accessor - Uppercase the first letter of each user's name
     public function getNameAttribute($name){
-        return ucfirst($name);
+        $i = 0;
+        $values = explode(' ', $name);
+        foreach ($values as $value){
+            $new_name[$i] = ucfirst($value);
+            $i = $i + 1;
+        }
+        $new_name = implode(' ', $new_name);
+        return $new_name;
     }
 
     // Checks if user is an admin

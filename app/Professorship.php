@@ -11,7 +11,9 @@ class Professorship extends Model
         'name', 'code'
     ];
 
+    protected $table = 'Professorships';
+
     public function user(){
-        $this->belongsTo('App\User');
+        return $this->belongsTo('App\User');
     }
 }

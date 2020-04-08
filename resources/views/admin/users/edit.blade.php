@@ -45,7 +45,7 @@
                         <br>
                         <div class="form-group">
                             <label>{{ __('Role') }}</label>
-                            <input type="text" name="role" class="form-control" value="{{ old('role', $user->role->name) }}" readonly>
+                            <input type="text" name="role" class="form-control" value="{{ old('role', $user->role->name ?? '') }}" readonly>
                             @include('alerts.feedback', ['field' => 'email'])
                         </div>
                         <br>

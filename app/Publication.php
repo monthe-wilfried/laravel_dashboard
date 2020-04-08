@@ -14,6 +14,8 @@ class Publication extends Model
         'title', 'author', 'year'
     ];
 
+    protected $table = 'publications';
+
     protected $dates = ['deleted_at'];
 
     public function users(){

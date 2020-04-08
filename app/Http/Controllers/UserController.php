@@ -18,19 +18,28 @@ class UserController extends Controller
      * @param  \App\User  $model
      * @return \Illuminate\View\View
      */
-    public function index(User $model)
+    public function index()
     {
-        return view('admin.users.index', ['users' => $model->paginate(15)]);
+        $users = User::orderBy('name', 'asc')->paginate(15);
+        return view('admin.users.index', compact('users'));
     }
     /**
-     * Show the form for editing a user
-     *
-     */
+ * Show the form for editing a user
+ *
+ */
     public function edit($id)
     {
         $user = User::findOrFail($id);
         $professorships = Professorship::pluck('name', 'id')->all();
         return view('admin.users.edit', compact('user', 'professorships'));
+
+    }
+    /**
+     * Show the user
+     *
+     */
+    public function show($id)
+    {
 
     }
     /**
@@ -58,7 +67,7 @@ class UserController extends Controller
         }
         $input['password'] = Hash::make($request->get('password'));
         $user = User::create($input);
-        return redirect()->route('user.edit', $user->id)
+        return redirect()->route('user.index')
             ->withStatus(__('User successfully created.'));
 
     }
@@ -90,13 +99,16 @@ class UserController extends Controller
 
     }
 
-
-//    public function updateStatus(Request $request, $id)
-//    {
+    public function destroy($id)
+    {
 //        $user = User::findOrFail($id);
-//        $user->update(['is_active'=>$request->is_active]);
-//        return redirect()->back();
-//    }
+//        unlink(url('/')."/black/img/".$user->photo->file);
+
+//        $user->delete();
+//        return back()->withStatus(__('User successfully deleted.'));
+    }
+
+
 
 
 }

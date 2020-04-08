@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfDeleteRequest;
+use App\Http\Requests\ProfessorshipRequest;
+use App\Professorship;
 use Illuminate\Http\Request;
 
 class ProfessorshipController extends Controller
@@ -9,11 +12,13 @@ class ProfessorshipController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
         //
+        $professorships = Professorship::orderBy('name', 'asc')->paginate(15);
+        return view('admin.professorships.index', compact('professorships'));
     }
 
     /**
@@ -32,9 +37,12 @@ class ProfessorshipController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProfessorshipRequest $request)
     {
         //
+        $input = $request->all();
+        Professorship::create($input);
+        return back()->withStatus('Professorship successfully created.');
     }
 
     /**
@@ -52,11 +60,13 @@ class ProfessorshipController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
         //
+        $professorship = Professorship::findOrFail($id);
+        return view('admin.professorships.edit', compact('professorship'));
     }
 
     /**
@@ -70,15 +80,34 @@ class ProfessorshipController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * delete the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return string
+     */
+    public function delete(ProfDeleteRequest $request)
+    {
+        //
+        $professorships = Professorship::findOrFail($request->checkBoxArray);
+        foreach ($professorships as $professorship){
+            $professorship->delete();
+        }
+        return back()->withStatus('Successfully deleted');
+
+
+
+
     }
 }

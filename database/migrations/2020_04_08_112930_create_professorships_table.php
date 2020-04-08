@@ -15,8 +15,8 @@ class CreateProfessorshipsTable extends Migration
     {
         Schema::create('professorships', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('code');
+            $table->string('name')->unique();
+            $table->integer('code')->unique();
             $table->timestamps();
         });
     }
