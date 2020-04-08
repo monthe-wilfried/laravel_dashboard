@@ -5,7 +5,7 @@
     <div class="row">
         <div style="padding-top: 50px; padding-left: 30px" class="col-sm-4">
             <div class="add-category">
-                <a class="btn btn-info btn-add" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <a class="btn btn-primary btn-add" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fa fa-plus"></i> Add Professorship
                 </a>
                 <div class="collapse" id="collapseExample">
@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::submit('Save', ['class'=>'btn btn-default']) !!}
+                            {!! Form::submit('Save', ['class'=>'btn btn-primary']) !!}
                         </div>
 
                         {!! Form::close() !!}
@@ -37,6 +37,7 @@
 
 
         <div class="col-sm-8">
+            {{ Form::open(['method'=>'DELETE', 'action'=>'ProfessorshipController@delete', 'class'=>'form-inline']) }}
             <div class="card ">
                 <div class="card-header">
                     <div class="row">
@@ -49,15 +50,12 @@
 
                     @include('alerts.success')
 
-                    {{ Form::open(['method'=>'DELETE', 'action'=>'ProfessorshipController@delete', 'class'=>'form-inline']) }}
                     <div class="form-group">
                         <select name="checkBoxArray" id="">
                             <option value="delete">Delete</option>
                         </select>
-                        <input type="submit" class="btn-sm btn-info">
+                        <input style="margin-left: 5px" type="submit" class="btn-sm btn-primary">
                     </div>
-
-
 
                     <div class="">
                         <table class="table table-striped">

@@ -79,6 +79,10 @@ class ProfessorshipController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $professorship = Professorship::findOrFail($id);
+        $input = $request->all();
+        $professorship->update($input);
+        return redirect()->route('professorships.index')->withStatus('Professorship successfully updated.');
     }
     /**
      * Remove the specified resource from storage.
@@ -99,12 +103,12 @@ class ProfessorshipController extends Controller
      */
     public function delete(ProfDeleteRequest $request)
     {
-        //
-        $professorships = Professorship::findOrFail($request->checkBoxArray);
-        foreach ($professorships as $professorship){
-            $professorship->delete();
-        }
-        return back()->withStatus('Successfully deleted');
+//        //
+//        $professorships = Professorship::findOrFail($request->checkBoxArray);
+//        foreach ($professorships as $professorship){
+//            $professorship->delete();
+//        }
+//        return back()->withStatus('Successfully deleted');
 
 
 

@@ -6,9 +6,10 @@
             <div class="header-body text-center mb-7">
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-6">
-                        <h1 class="text-white">{{ __('Welcome!') }}</h1>
+                        <h1 class="text-white">{{ __('Intelligente multimediale Systeme') }}</h1>
                         <p class="text-lead text-light">
-                            {{ __('Use Black Dashboard theme to create a great project.') }}
+                            {{ __('Use this platform to create Publications and Equipments') }}
+                            <img src="{{ asset('black') }}/img/cyber.jpg" alt="">
                         </p>
                     </div>
                 </div>

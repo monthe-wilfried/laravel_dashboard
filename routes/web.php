@@ -19,20 +19,21 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
-
 Route::group(['middleware' => 'auth'], function () {
-        Route::get('/home', 'HomeController@index')->name('home');
-		Route::get('icons', ['as' => 'pages.icons', 'uses' => 'PageController@icons']);
-		Route::get('media', ['as' => 'pages.media', 'uses' => 'PageController@media']);
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('icons', ['as' => 'pages.icons', 'uses' => 'PageController@icons']);
+    Route::get('media', ['as' => 'pages.media', 'uses' => 'PageController@media']);
 });
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController');
 	Route::put('update', ['as'=>'user.userUpdate', 'uses'=>'UserController@userUpdate']);
+    Route::delete('user/delete', ['as'=>'user.delete', 'uses'=>'UserController@delete']);
     Route::resource('professorships', 'ProfessorshipController');
     Route::delete('professorship/delete', ['as'=>'professorship.delete', 'uses'=>'ProfessorshipController@delete']);
     Route::resource('publications', 'PublicationController');

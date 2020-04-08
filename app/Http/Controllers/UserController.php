@@ -99,13 +99,18 @@ class UserController extends Controller
 
     }
 
-    public function destroy($id)
+    public function delete(Request $request)
     {
 //        $user = User::findOrFail($id);
 //        unlink(url('/')."/black/img/".$user->photo->file);
 
 //        $user->delete();
 //        return back()->withStatus(__('User successfully deleted.'));
+    }
+
+    public function destroy($id)
+    {
+
     }
 
 

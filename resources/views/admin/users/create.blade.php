@@ -84,7 +84,7 @@
                     </div>
                     <hr>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-info">{{ __('Create') }}</button>
+                        <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
                     </div>
                 </div>
             </div>
