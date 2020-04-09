@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('professorships', 'ProfessorshipController');
     Route::delete('professorship/delete', ['as'=>'professorship.delete', 'uses'=>'ProfessorshipController@delete']);
     Route::resource('publications', 'PublicationController');
+    Route::delete('publication/delete', ['as'=>'publication.delete', 'uses'=>'PublicationController@delete']);
     Route::resource('roles', 'RoleController');
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);

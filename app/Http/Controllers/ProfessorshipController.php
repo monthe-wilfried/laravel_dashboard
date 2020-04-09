@@ -103,12 +103,12 @@ class ProfessorshipController extends Controller
      */
     public function delete(ProfDeleteRequest $request)
     {
-//        //
-//        $professorships = Professorship::findOrFail($request->checkBoxArray);
-//        foreach ($professorships as $professorship){
-//            $professorship->delete();
-//        }
-//        return back()->withStatus('Successfully deleted');
+        //
+        $professorships = Professorship::findOrFail($request->checkBoxArray);
+        foreach ($professorships as $professorship){
+            $professorship->delete();
+        }
+        return back()->withStatus('Successfully deleted');
 
 
 

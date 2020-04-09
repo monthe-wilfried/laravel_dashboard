@@ -56,6 +56,9 @@
                     <p>{{ __('Publications') }}</p>
                 </a>
             </li>
+            <li @if ($pageSlug == 'create_publication') class="active " @endif>
+
+            </li>
             <li @if ($pageSlug == 'roles') class="active " @endif>
                 <a href="{{ route('roles.index') }}">
                     <i class="tim-icons icon-atom"></i>

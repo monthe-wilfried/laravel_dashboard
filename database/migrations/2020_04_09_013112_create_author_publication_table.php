@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePublicationUserTable extends Migration
+class CreateAuthorPublicationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePublicationUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('publication_user', function (Blueprint $table) {
+        Schema::create('author_publication', function (Blueprint $table) {
             $table->id();
             $table->integer('publication_id');
-            $table->integer('user_id');
+            $table->integer('author_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreatePublicationUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('publication_user');
+        Schema::dropIfExists('author_publication');
     }
 }

@@ -11,15 +11,15 @@ class Publication extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'author', 'year'
+        'title', 'content', 'author', 'year'
     ];
 
     protected $table = 'publications';
 
     protected $dates = ['deleted_at'];
 
-    public function users(){
-        return $this->belongsToMany('App\User');
+    public function authors(){
+        return $this->belongsToMany('App\Author');
     }
 
 }

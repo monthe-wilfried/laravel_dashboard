@@ -48,7 +48,7 @@ class User extends Authenticatable
     protected $table = 'users';
 
     public function publications(){
-        return $this->belongsToMany('App\Publication');
+        return $this->hasMany('App\Publication');
     }
 
     public function professorship(){

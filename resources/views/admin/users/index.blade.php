@@ -4,7 +4,7 @@
 
     <div class="content">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 {{ Form::open(['method'=>'DELETE', 'action'=>'UserController@delete', 'class'=>'form-inline']) }}
                 <div class="card ">
                     <div class="card-header">
@@ -34,12 +34,12 @@
                                 <tr><th scope="col">
                                         <input type="checkbox" id="options">
                                     </th>
+                                    <th scope="col">Photo</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Professorship</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Role</th>
-                                    <th scope="col">Creation Date</th>
                                     <th scope="col"></th>
                                 </tr></thead>
                                 <tbody>
@@ -48,6 +48,11 @@
                                     <tr>
                                         <td>
                                             <input type="checkbox" class="checkBoxes" name="checkBoxArray[]" value="{{$user->id}}">
+                                        </td>
+                                        <td>
+                                            <div class="photo">
+                                                <img src="{{ $user->photo->file ?? asset('black').'/img/gravatar.png'  }}" >
+                                            </div>
                                         </td>
                                         <td>{{$user->name}}</td>
                                         <td>
@@ -72,7 +77,6 @@
                                             @endif
                                         </td>
                                         <td>{{$user->role->name ?? 'Not defined'}}</td>
-                                        <td>{{$user->created_at->diffForHumans() ?? 'No date'}}</td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
