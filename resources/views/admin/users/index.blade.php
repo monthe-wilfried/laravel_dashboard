@@ -5,7 +5,6 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-12">
-                {{ Form::open(['method'=>'DELETE', 'action'=>'UserController@delete', 'class'=>'form-inline']) }}
                 <div class="card ">
                     <div class="card-header">
                         <div class="row">
@@ -21,19 +20,19 @@
                     <div class="card-body">
 
                         @include('alerts.success')
-
-                        <div class="form-group">
-                            <select name="checkBoxArray" id="">
-                                <option value="delete">Delete</option>
-                            </select>
-                            <input style="margin-left: 5px" type="submit" class="btn-sm btn-primary">
-                        </div>
+{{--                        {{ Form::open(['method'=>'DELETE', 'action'=>'UserController@delete', 'class'=>'form-inline']) }}--}}
+{{--                        <div class="form-group">--}}
+{{--                            <select name="checkBoxArray" id="">--}}
+{{--                                <option value="delete">Delete</option>--}}
+{{--                            </select>--}}
+{{--                            <input style="margin-left: 5px" type="submit" class="btn-sm btn-primary">--}}
+{{--                        </div>--}}
                         <div class="">
                             <table class="table table-striped">
                                 <thead class=" text-primary">
-                                <tr><th scope="col">
-                                        <input type="checkbox" id="options">
-                                    </th>
+{{--                                <tr><th scope="col">--}}
+{{--                                        <input type="checkbox" id="options">--}}
+{{--                                    </th>--}}
                                     <th scope="col">Photo</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
@@ -46,9 +45,9 @@
 
                                 @foreach($users as $user)
                                     <tr>
-                                        <td>
-                                            <input type="checkbox" class="checkBoxes" name="checkBoxArray[]" value="{{$user->id}}">
-                                        </td>
+{{--                                        <td>--}}
+{{--                                            <input type="checkbox" class="checkBoxes" name="checkBoxArray[]" value="{{$user->id}}">--}}
+{{--                                        </td>--}}
                                         <td>
                                             <div class="photo">
                                                 <img src="{{ $user->photo->file ?? asset('black').'/img/gravatar.png'  }}" >
@@ -88,7 +87,7 @@
                                                         <hr>
                                                         <form action="{{route('user.destroy', $user->id)}}" method="post">
                                                             @csrf
-                                                            @method('PUT')
+                                                            @method('DELETE')
                                                             <input style="cursor: pointer" type="submit" value="Delete" class="dropdown-item">
                                                         </form>
                                                     @endif
@@ -100,7 +99,7 @@
 
                                 </tbody>
                             </table>
-                            {{ Form::close() }}
+{{--                            {{ Form::close() }}--}}
                         </div>
                         <div style="padding-left: 50%">{{$users->render()}}</div>
                     </div>

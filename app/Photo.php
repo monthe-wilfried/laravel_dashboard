@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
 
 class Photo extends Model
 {
@@ -22,6 +23,6 @@ class Photo extends Model
     // Accessor
     public function getFileAttribute($photo)
     {
-        return asset('black').$this->uploads.$photo;
+        return URL::asset('black').$this->uploads.$photo;
     }
 }

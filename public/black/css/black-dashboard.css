@@ -17781,11 +17781,13 @@ Copyright (c) 2015 Daniel Eden
 
 .login-page .card-login {
     border-radius: 0.4285rem;
-    padding-bottom: 0.7rem;
+    padding-bottom: 0.5rem;
 }
 
 .login-page .card-login.card-white .card-header .card-title {
   color: #ffffff;
+  padding-left: 10px;
+
 }
 
 .login-page .card-login .card-header .card-title {
@@ -17808,18 +17810,20 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .login-page .card-login .input-group:last-child {
-  margin-bottom: 40px;
+  margin-bottom: 0px;
 }
 
 .login-page .link {
   font-size: 10px;
   text-decoration: none;
+  color: #005f50;
 }
 
 .card-register .card-header {
   padding: 0 0 65px;
   overflow: hidden;
   z-index: 1;
+  padding-left: 10px;
 }
 
 .card-register .form-check {

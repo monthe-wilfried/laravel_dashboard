@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Author;
 use App\Publication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class PublicationController extends Controller
 {
@@ -40,11 +41,7 @@ class PublicationController extends Controller
     public function store(Request $request)
     {
         //
-
         $input = $request->except('authors');
-        // get the first element after exploding
-        $year = explode('-', $request->year);
-        $input['year'] = array_shift($year);
 
         $publication = Publication::create($input);
 
@@ -73,11 +70,13 @@ class PublicationController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
         //
+        $publication = Publication::findOrFail($id);
+        return view('admin.publications.edit', compact('publication'));
     }
 
     /**
@@ -90,6 +89,19 @@ class PublicationController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $input = $request->except('authors');
+
+        $publication = Publication::findOrFail($id);
+        $publication->update($input);
+
+        $authors = $request->authors;
+        foreach ($authors as $author){
+            $new_author  = new Author();
+            $new_author->update($author);
+        }
+
+        return redirect()->route('publications.index')
+            ->withStatus('Publication successfully updated.');
     }
 
     /**
@@ -112,5 +124,10 @@ class PublicationController extends Controller
     public function delete(Request $request)
     {
         //
+        $publications = Publication::findOrFail($request->checkBoxArray);
+        foreach ($publications as $publication){
+            $publication->delete();
+        }
+        return back()->withStatus('Publication successfully deleted');
     }
 }

@@ -29,13 +29,13 @@
 
                     <div class="input_fields_wrap form-group{{ $errors->has('authors') ? ' has-danger' : '' }}">
                         <button class="add_field_button btn btn-default">Add More Authors</button>
-                        <input type="text" name="authors[]" class="form-control{{ $errors->has('authors') ? ' is-invalid' : '' }}" placeholder="{{ __('Enter author') }}" value="{{ old('authors') }}" required >
+                        <input type="text" name="authors[]" class="form-control{{ $errors->has('authors') ? ' is-invalid' : '' }}" placeholder="{{ __('Enter author') }}" value="{{ old('authors') }}" >
                         @include('alerts.feedback', ['field' => 'authors'])
                     </div>
 
                     <div class="form-group{{ $errors->has('year') ? ' has-danger' : '' }}">
                         <label>{{ __('Publication Year') }}</label>
-                        <input type="month" name="year" class="form-control{{ $errors->has('year') ? ' is-invalid' : '' }}" value="{{ old('year') }}" required >
+                        <input type="number" name="year" class="form-control{{ $errors->has('year') ? ' is-invalid' : '' }}" value="{{ old('year') }}" required >
                         @include('alerts.feedback', ['field' => 'year'])
                     </div>
                     <hr>

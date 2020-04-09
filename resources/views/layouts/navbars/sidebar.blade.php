@@ -65,6 +65,9 @@
                     <p>{{ __('Roles') }}</p>
                 </a>
             </li>
+            <li @if ($pageSlug == 'edit_publication') class="active " @endif>
+
+            </li>
             <li @if ($pageSlug == 'media') class="active " @endif>
                 <a href="{{ route('pages.media') }}">
                     <i class="tim-icons icon-puzzle-10"></i>

@@ -9,6 +9,7 @@ use App\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\URL;
 
 class UserController extends Controller
 {
@@ -99,18 +100,26 @@ class UserController extends Controller
 
     }
 
-    public function delete(Request $request)
-    {
-//        $user = User::findOrFail($id);
-//        unlink(url('/')."/black/img/".$user->photo->file);
-
-//        $user->delete();
-//        return back()->withStatus(__('User successfully deleted.'));
-    }
+//    public function delete(Request $request)
+//    {
+//
+//        $users = User::findOrFail($request->checkBoxArray);
+//        dd($users);
+////        foreach ($users as $user){
+////            unlink($user->photo->file);
+////            $user->delete();
+////        }
+////        return back()->withStatus(__('User successfully deleted.'));
+//    }
 
     public function destroy($id)
     {
-
+        $user = User::findOrFail($id);
+//        if($user->photo){
+//            $user->photo->file->delete();
+//        }
+        $user->delete();
+        return back()->withStatus(__('User successfully deleted.'));
     }
 
 
