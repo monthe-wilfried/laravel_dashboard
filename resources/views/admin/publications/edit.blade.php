@@ -30,6 +30,7 @@
                     <div class="input_fields_wrap form-group{{ $errors->has('authors') ? ' has-danger' : '' }}">
 
                         @foreach($publication->authors as $author)
+                            <input type="hidden" name="author_ids[]" value="{{ $author->id }}">
                             <input type="text" name="authors[]" class="form-control{{ $errors->has('authors') ? ' is-invalid' : '' }}" placeholder="{{ __('Enter author') }}" value="{{ old('authors', $author->name) }}" >
                             @include('alerts.feedback', ['field' => 'authors'])
                         @endforeach

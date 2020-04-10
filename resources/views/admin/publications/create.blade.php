@@ -1,5 +1,12 @@
 @extends('layouts.app', ['page' => __('Create Publication'), 'pageSlug' => 'create_publication'])
 
+{{--@section('styles')--}}
+
+{{--    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>--}}
+{{--    <script>tinymce.init({selector:'textarea'});</script>--}}
+
+{{--@endsection--}}
+
 @section('content')
     {!! Form::open(['method'=>'POST', 'action'=>'PublicationController@store', 'files'=>true]) !!}
 
@@ -79,4 +86,5 @@
     </script>
 
 @endsection
+
 

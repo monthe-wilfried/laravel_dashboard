@@ -49,7 +49,7 @@
                                             <input type="checkbox" class="checkBoxes" name="checkBoxArray[]" value="{{$publication->id}}">
                                         </td>
                                         <td>{{ $publication->title }}</td>
-                                        <td>{{ Str::limit($publication->content, 100) }}</td>
+                                        <td>{!! Str::limit($publication->content, 100) !!} </td>
                                         <td>
                                             @if($publication->authors)
                                                 @foreach($publication->authors as $author)

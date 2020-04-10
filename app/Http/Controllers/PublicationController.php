@@ -6,6 +6,7 @@ use App\Author;
 use App\Publication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 class PublicationController extends Controller
 {
@@ -89,15 +90,18 @@ class PublicationController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $input = $request->except('authors');
+        $input = $request->except('authors', 'author_ids');
 
         $publication = Publication::findOrFail($id);
         $publication->update($input);
 
         $authors = $request->authors;
+        $author_ids = $request->author_ids;
+        $i = 0;
         foreach ($authors as $author){
-            $new_author  = new Author();
-            $new_author->update($author);
+            $new_author = Author::findOrFail($author_ids[$i]);
+            $new_author->update(['name'=>$author]);
+            $i = $i + 1;
         }
 
         return redirect()->route('publications.index')
