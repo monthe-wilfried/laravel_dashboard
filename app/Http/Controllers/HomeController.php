@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Professorship;
+use App\Publication;
+use App\User;
+
 class HomeController extends Controller
 {
     /**
@@ -21,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $users = count(User::all());
+        $publications = count(Publication::all());
+        $professorships = count(Professorship::all());
+        return view('admin.dashboard', compact('users', 'publications', 'professorships'));
     }
 }

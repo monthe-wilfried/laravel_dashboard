@@ -53,7 +53,10 @@
                                         <td>
                                             @if($publication->authors)
                                                 @foreach($publication->authors as $author)
-                                                    {{ $author->name }} |
+                                                    <a href="">{{ $author->name }}</a>
+                                                    @if(count($publication->authors) > 1)
+                                                        |
+                                                    @endif
                                                 @endforeach
                                             @endif
                                         </td>

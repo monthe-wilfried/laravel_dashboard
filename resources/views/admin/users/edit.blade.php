@@ -55,7 +55,8 @@
 
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-fill btn-info">{{ __('Save') }}</button>
+                        <button type="submit" class="btn btn-fill btn-primary">{{ __('Save') }}</button>
+                        <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>
                     </div>
                 {!! Form::close() !!}
 {{--                </form>--}}

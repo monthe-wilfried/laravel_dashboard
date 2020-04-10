@@ -8,6 +8,7 @@
                 <a class="btn btn-primary btn-add" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fa fa-plus"></i> Add Professorship
                 </a>
+                <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>
                 <div class="collapse" id="collapseExample">
                     <div class="card card-body">
 

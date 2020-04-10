@@ -85,6 +85,7 @@
                     <hr>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
+                        <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>
                     </div>
                 </div>
             </div>

@@ -80,6 +80,7 @@
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-fill btn-primary">{{ __('Change password') }}</button>
+                        <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>
                     </div>
                 </form>
             </div>

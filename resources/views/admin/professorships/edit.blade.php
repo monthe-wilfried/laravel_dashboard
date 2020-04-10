@@ -29,6 +29,7 @@
 
                         <div class="form-group">
                             {!! Form::submit('Save', ['class'=>'btn btn-primary']) !!}
+                            <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>
                         </div>
 
                         {!! Form::close() !!}
