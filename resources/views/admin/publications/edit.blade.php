@@ -45,6 +45,7 @@
 
                     <div class="card-footer">
                         <input type="submit" value="Save" class="btn btn-primary">
+                        <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>
                     </div>
 
                 </div>
