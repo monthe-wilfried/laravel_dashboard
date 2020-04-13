@@ -14,13 +14,13 @@
 
                         {!! Form::open(['method'=>'POST', 'action'=>'ProfessorshipController@store'])  !!}
                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                            <label>{{ __('Name') }}</label>
+                            <label>{{ __('Name') }}</label><span class="star"> * </span>
                             {!! Form::text('name', null, ['class'=> "form-control {{ $errors->has('name') ? ' has-error' : '' }}"]) !!}
                             @include('alerts.feedback', ['field' => 'name'])
                         </div>
 
                         <div class="form-group{{ $errors->has('code') ? ' has-danger' : '' }}">
-                            <label>{{ __('Code') }}</label>
+                            <label>{{ __('Code') }}</label><span class="star"> * </span>
                             {!! Form::number('code', null, ['class'=> "form-control {{ $errors->has('code') ? ' has-error' : '' }}"]) !!}
                             @include('alerts.feedback', ['field' => 'code'])
                         </div>
@@ -52,8 +52,8 @@
                     @include('alerts.success')
 
                     <div class="form-group">
-                        <select name="checkBoxArray" id="">
-                            <option value="delete">Delete</option>
+                        <select class="form-control" name="checkBoxArray" id="">
+                            <option class="back-color" value="delete">Delete</option>
                         </select>
                         <input style="margin-left: 5px" type="submit" class="btn-sm btn-primary">
                     </div>

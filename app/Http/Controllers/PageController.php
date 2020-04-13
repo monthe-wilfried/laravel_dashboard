@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Photo;
+use Illuminate\Http\Request;
+
 class PageController extends Controller
 {
     /**
@@ -75,6 +78,31 @@ class PageController extends Controller
     }
 
     public function media()
+    {
+        $photos = Photo::paginate(20);
+        return view('admin.pages.media', compact('photos'));
+    }
+    /**
+     * Delete a Photo
+     *
+     * @return \Illuminate\View\View
+     */
+    public function delete(Request $request)
+    {
+        $photo = Photo::findOrFail($request->photo_id);
+
+//        if ($photo->file){
+//            unlink($photo->file);
+//        }
+        $photo->delete();
+        return back()->withStatus('Photo deleted successfully.');
+    }
+    /**
+     * Delete group of images
+     *
+     * @return \Illuminate\View\View
+     */
+    public function destroy($id)
     {
 
     }

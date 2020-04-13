@@ -1,11 +1,8 @@
 @extends('layouts.app', ['page' => __('Create Publication'), 'pageSlug' => 'create_publication'])
 
-{{--@section('styles')--}}
-
-{{--    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>--}}
-{{--    <script>tinymce.init({selector:'textarea'});</script>--}}
-
-{{--@endsection--}}
+@section('styles')
+    <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+@endsection
 
 @section('content')
     {!! Form::open(['method'=>'POST', 'action'=>'PublicationController@store', 'files'=>true]) !!}
@@ -23,25 +20,27 @@
 
 
                     <div class="form-group{{ $errors->has('title') ? ' has-danger' : '' }}">
-                        <label>{{ __('Title') }}</label>
+                        <label>{{ __('Title') }}</label><span class="star"> * </span>
                         <input type="text" name="title" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="{{ __('Enter title') }}" value="{{ old('title') }}" required >
                         @include('alerts.feedback', ['field' => 'title'])
                     </div>
 
                     <div class="form-group{{ $errors->has('content') ? ' has-danger' : '' }}">
-                        <label>{{ __('Content') }}</label>
+                        <label>{{ __('Content') }}</label><span class="star"> * </span>
                         <textarea name="content" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" placeholder="{{ __('Enter content') }}" rows="10" required>{{ old('content') }}</textarea>
+                        <script>CKEDITOR.replace( 'content' );</script>
                         @include('alerts.feedback', ['field' => 'content'])
                     </div>
 
                     <div class="input_fields_wrap form-group{{ $errors->has('authors') ? ' has-danger' : '' }}">
+                        <label>{{ __('Authors') }}</label><span class="star"> * </span><br>
                         <button class="add_field_button btn btn-default">Add More Authors</button>
                         <input type="text" name="authors[]" class="form-control{{ $errors->has('authors') ? ' is-invalid' : '' }}" placeholder="{{ __('Enter author') }}" value="{{ old('authors') }}" >
                         @include('alerts.feedback', ['field' => 'authors'])
                     </div>
 
                     <div class="form-group{{ $errors->has('year') ? ' has-danger' : '' }}">
-                        <label>{{ __('Publication Year') }}</label>
+                        <label>{{ __('Publication Year') }}</label><span class="star"> * </span>
                         <input type="number" name="year" class="form-control{{ $errors->has('year') ? ' is-invalid' : '' }}" value="{{ old('year') }}" required >
                         @include('alerts.feedback', ['field' => 'year'])
                     </div>

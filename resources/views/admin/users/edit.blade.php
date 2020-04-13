@@ -18,13 +18,13 @@
                         <input type="hidden" name="user_id" value="{{$user->id}}">
 
                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                            <label>{{ __('Name') }}</label>
+                            <label>{{ __('Name') }}</label><span class="star"> * </span>
                             <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name', $user->name) }}">
                             @include('alerts.feedback', ['field' => 'name'])
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                            <label>{{ __('Email address') }}</label>
+                            <label>{{ __('Email address') }}</label><span class="star"> * </span>
                             <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email address') }}" value="{{ old('email', $user->email) }}">
                             @include('alerts.feedback', ['field' => 'email'])
                         </div>
@@ -38,7 +38,7 @@
                         @if($user->role->name == 'author')
                         <div class="form-group{{ $errors->has('professorship_id') ? ' has-danger' : '' }}">
                             <label>{{ __('Professorship') }}</label>
-                            {!! Form::select('professorship_id', $professorships, null, ['class'=>" {{ $errors->has('professorship_id') ? ' is-invalid' : '' }}" ]) !!}
+                            {!! Form::select('professorship_id', $professorships, null, ['class'=>"back-color form-control {{ $errors->has('professorship_id') ? ' is-invalid' : '' }}" ]) !!}
                             @include('alerts.feedback', ['field' => 'professorship_id'])
                         </div>
                         @endif
@@ -50,7 +50,7 @@
                         </div>
                         <br>
                         <label>{{ __('Picture') }}</label>
-                        <input type="file" name="file" class="form-control" >
+                        <input type="file"  name="file" class="form-control" >
                         @include('alerts.feedback', ['field' => 'file'])
 
                     </div>

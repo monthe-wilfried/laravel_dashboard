@@ -28,6 +28,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('icons', ['as' => 'pages.icons', 'uses' => 'PageController@icons']);
     Route::get('media', ['as' => 'pages.media', 'uses' => 'PageController@media']);
+    Route::delete('media/delete', ['as' => 'media.delete', 'uses' => 'PageController@delete']);
+    Route::delete('media/destroy', ['as' => 'media.destroy', 'uses' => 'PageController@destroy']);
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -37,6 +39,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('professorships', 'ProfessorshipController');
     Route::delete('professorship/delete', ['as'=>'professorship.delete', 'uses'=>'ProfessorshipController@delete']);
     Route::resource('publications', 'PublicationController');
+    Route::get('publication/trash', ['as'=>'publication.trash', 'uses'=>'PublicationController@trash']);
+    Route::delete('publication/process', ['as'=>'publication.process', 'uses'=>'PublicationController@trash_process']);
     Route::delete('publication/delete', ['as'=>'publication.delete', 'uses'=>'PublicationController@delete']);
     Route::resource('roles', 'RoleController');
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);

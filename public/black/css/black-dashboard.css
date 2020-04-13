@@ -17900,4 +17900,30 @@ Copyright (c) 2015 Daniel Eden
   line-height: 32px;
 }
 
+
+.read-more-show{
+    cursor:pointer;
+    color: #ed8323;
+}
+.read-more-hide{
+    cursor:pointer;
+    color: #ed8323;
+}
+
+.hide_content{
+    display: none;
+}
+
+.upper_links{
+    color: #ed8323;
+}
+
+.back-color {
+    background-color: #27293d !important;
+}
+
+.star{
+    color: red;
+}
+
 /*# sourceMappingURL=dashboard-free.css.map */

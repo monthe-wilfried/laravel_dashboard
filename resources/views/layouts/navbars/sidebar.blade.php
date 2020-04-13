@@ -52,25 +52,33 @@
             </li>
             <li @if ($pageSlug == 'publications') class="active " @endif>
                 <a href="{{ route('publications.index') }}">
-                    <i class="tim-icons icon-bell-55"></i>
+                    <i class="tim-icons icon-paper"></i>
                     <p>{{ __('Publications') }}</p>
                 </a>
             </li>
             <li @if ($pageSlug == 'create_publication') class="active " @endif>
 
             </li>
-            <li @if ($pageSlug == 'roles') class="active " @endif>
-                <a href="{{ route('roles.index') }}">
-                    <i class="tim-icons icon-atom"></i>
-                    <p>{{ __('Roles') }}</p>
-                </a>
-            </li>
             <li @if ($pageSlug == 'edit_publication') class="active " @endif>
 
             </li>
+            <li @if ($pageSlug == 'roles') class="active " @endif>
+                <a href="{{ route('roles.index') }}">
+                    <i class="tim-icons icon-tag"></i>
+                    <p>{{ __('Roles') }}</p>
+                </a>
+            </li>
+            <li @if ($pageSlug == 'roles') class="active " @endif>
+
+            </li>
+
+            <li @if ($pageSlug == 'trash') class="active " @endif>
+
+            </li>
+
             <li @if ($pageSlug == 'media') class="active " @endif>
                 <a href="{{ route('pages.media') }}">
-                    <i class="tim-icons icon-puzzle-10"></i>
+                    <i class="tim-icons icon-image-02"></i>
                     <p>{{ __('Media') }}</p>
                 </a>
             </li>

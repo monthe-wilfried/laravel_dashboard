@@ -1,5 +1,9 @@
 @extends('layouts.app', ['page' => __('Edit Publication'), 'pageSlug' => 'edit_publication'])
 
+@section('styles')
+    <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+@endsection
+
 @section('content')
     <form method="post" action="{{ route('publications.update', $publication->id) }}">
     @csrf
@@ -16,20 +20,22 @@
                     @include('alerts.success')
 
                     <div class="form-group{{ $errors->has('title') ? ' has-danger' : '' }}">
-                        <label>{{ __('Title') }}</label>
+                        <label>{{ __('Title') }}</label><span class="star"> * </span>
                         <input type="text" name="title" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="{{ __('Enter title') }}" value="{{ old('title', $publication->title) }}" required >
                         @include('alerts.feedback', ['field' => 'title'])
                     </div>
 
                     <div class="form-group{{ $errors->has('content') ? ' has-danger' : '' }}">
-                        <label>{{ __('Content') }}</label>
+                        <label>{{ __('Content') }}</label><span class="star"> * </span>
                         <textarea name="content" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" placeholder="{{ __('Enter content') }}" rows="10" required>{{ old('content', $publication->content) }}</textarea>
+                        <script>CKEDITOR.replace( 'content' );</script>
                         @include('alerts.feedback', ['field' => 'content'])
                     </div>
 
                     <div class="input_fields_wrap form-group{{ $errors->has('authors') ? ' has-danger' : '' }}">
 
                         @foreach($publication->authors as $author)
+                            <label>{{ __('Authors') }}</label><span class="star"> * </span>
                             <input type="hidden" name="author_ids[]" value="{{ $author->id }}">
                             <input type="text" name="authors[]" class="form-control{{ $errors->has('authors') ? ' is-invalid' : '' }}" placeholder="{{ __('Enter author') }}" value="{{ old('authors', $author->name) }}" >
                             @include('alerts.feedback', ['field' => 'authors'])
@@ -37,7 +43,7 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('year') ? ' has-danger' : '' }}">
-                        <label>{{ __('Publication Year') }}</label>
+                        <label>{{ __('Publication Year') }}</label><span class="star"> * </span>
                         <input type="number" name="year" class="form-control{{ $errors->has('year') ? ' is-invalid' : '' }}" value="{{ old('year', $publication->year) }}" required >
                         @include('alerts.feedback', ['field' => 'year'])
                     </div>

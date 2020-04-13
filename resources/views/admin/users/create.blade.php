@@ -18,13 +18,13 @@
 
 
                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                        <label>{{ __('Name') }}</label>
+                        <label>{{ __('Name') }}</label><span class="star"> * </span>
                         <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name') }}" required >
                         @include('alerts.feedback', ['field' => 'name'])
                     </div>
 
                     <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                        <label>{{ __('Email address') }}</label>
+                        <label>{{ __('Email address') }}</label><span class="star"> * </span>
                         <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email address') }}" value="{{ old('email') }}" required>
                         @include('alerts.feedback', ['field' => 'email'])
                     </div>
@@ -44,14 +44,14 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group{{ $errors->has('professorship_id') ? ' has-danger' : '' }}">
-                        <label>{{ __('Professorship') }}</label>
-                        {!! Form::select('professorship_id', [''=>'Select a professorship...'] + $professorships, null, ['class'=>" {{ $errors->has('professorship_id') ? ' is-invalid' : '' }}" ]) !!}
+                        <label>{{ __('Professorship') }}</label><span class="star"> * </span>
+                        {!! Form::select('professorship_id', [''=>'Select a professorship...'] + $professorships, null, ['class'=>"back-color form-control {{ $errors->has('professorship_id') ? ' is-invalid' : '' }}" ]) !!}
                         @include('alerts.feedback', ['field' => 'professorship_id'])
                     </div>
                     <br>
                     <div class="form-group">
-                        <label>{{ __('Role') }}</label>
-                        {!! Form::select('role_id', [''=>'Select a role...'] + $roles, null, ['class'=>" {{ $errors->has('role_id') ? ' is-invalid' : '' }}" ]) !!}
+                        <label>{{ __('Role') }}</label><span class="star"> * </span>
+                        {!! Form::select('role_id', [''=>'Select a role...'] + $roles, null, ['class'=>"back-color form-control {{ $errors->has('role_id') ? ' is-invalid' : '' }}" ]) !!}
                         @include('alerts.feedback', ['field' => 'role_id'])
                     </div>
                     <br>
@@ -73,13 +73,13 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                        <label>{{ __('Password') }}</label>
+                        <label>{{ __('Password') }}</label><span class="star"> * </span>
                         <input type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('New Password') }}" value="" required>
                         @include('alerts.feedback', ['field' => 'password'])
                     </div>
 
                     <div class="form-group">
-                        <label>{{ __('Confirm Password') }}</label>
+                        <label>{{ __('Confirm Password') }}</label><span class="star"> * </span>
                         <input type="password" name="password_confirmation" class="form-control" placeholder="{{ __('Confirm New Password') }}" value="" required>
                     </div>
                     <hr>

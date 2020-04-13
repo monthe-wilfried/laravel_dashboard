@@ -23,6 +23,7 @@ class Photo extends Model
     // Accessor
     public function getFileAttribute($photo)
     {
-        return URL::asset('black').$this->uploads.$photo;
+//        return public_path('black'.$this->uploads.$photo);
+        return asset('black').$this->uploads.$photo;
     }
 }

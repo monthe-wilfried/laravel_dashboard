@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => __('All Publications'), 'pageSlug' => 'publications'])
+@extends('layouts.app', ['page' => __('All Publications'), 'pageSlug' => 'trash'])
 
 @section('styles')
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -13,12 +13,12 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-12">
-                {{ Form::open(['method'=>'DELETE', 'action'=>'PublicationController@delete', 'class'=>'form-inline']) }}
+                {{ Form::open(['method'=>'DELETE', 'action'=>'PublicationController@trash_process', 'class'=>'form-inline']) }}
                 <div class="card ">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-8">
-                                <h4 class="card-title">Publications</h4>
+                                <h4 class="card-title">Publications - Trash</h4>
                             </div>
                             <div class="col-4 text-right">
                                 <a href="{{route('publications.create')}}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Publication</a>
@@ -27,8 +27,8 @@
                     </div>
                     <br>
                     <div class="col-sm-4">
-                        <a href="{{ route('publications.index') }}" class="upper_links"><i class="far fa-check-circle"></i> Published ({{ count($publications)}})</a> |
-                        <a href="{{ route('publication.trash') }}" class="upper_links"><i class="fas fa-trash-alt"></i> Trash ({{ count($publication_trashed)}})</a>
+                        <a href="{{ route('publications.index') }}" class="upper_links"><i class="far fa-check-circle"></i> Published ({{ $publicationsCount }})</a> |
+                        <a href="{{ route('publication.trash') }}" class="upper_links"><i class="fas fa-trash-alt"></i> Trash ({{ $publicationsTrashCount }})</a>
                     </div>
 
                     <div class="card-body">
@@ -37,7 +37,9 @@
 
                         <div class="form-group">
                             <select class="back-color form-control" name="checkBoxArray" id="">
-                                <option value="delete">Delete</option>
+                                <option value="">Select action ...</option>
+                                <option value="restore">Restore</option>
+                                <option value="delete">Delete Permanently</option>
                             </select>
                             <input style="margin-left: 5px" type="submit" class="btn-sm btn-primary">
                         </div>
@@ -51,8 +53,7 @@
                                     <th scope="col">Content</th>
                                     <th scope="col">Authors</th>
                                     <th scope="col">Publication Year</th>
-                                    <th scope="col">Created Date</th>
-                                    <th scope="col"></th>
+                                    <th scope="col">Deleted Date</th>
                                 </tr></thead>
                                 <tbody>
 
@@ -63,7 +64,7 @@
                                         </td>
                                         <td>{{ $publication->title }}</td>
                                         <td>
-{{--                                            <span class="article">{{ $publication->content }}</span>--}}
+                                            {{--                                            <span class="article">{{ $publication->content }}</span>--}}
                                             @if(strlen($publication->content) > 100)
                                                 {{substr($publication->content,0,100)}}
                                                 <span class="read-more-show hide_content">Read More</span>
@@ -84,17 +85,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $publication->year }}</td>
-                                        <td>{{ $publication->created_at->diffForHumans() ?? 'No date' }}</td>
-                                        <td class="text-right">
-                                            <div class="dropdown">
-                                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <a class="dropdown-item" href="{{route('publications.edit', $publication->id)}}">Edit</a>
-                                                </div>
-                                            </div>
-                                        </td>
+                                        <td>{{ $publication->deleted_at->diffForHumans() ?? 'No date' }}</td>
                                     </tr>
                                 @endforeach
 

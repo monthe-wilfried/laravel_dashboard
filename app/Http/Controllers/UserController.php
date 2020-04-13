@@ -100,24 +100,24 @@ class UserController extends Controller
 
     }
 
-//    public function delete(Request $request)
-//    {
-//
-//        $users = User::findOrFail($request->checkBoxArray);
-//        dd($users);
-////        foreach ($users as $user){
-////            unlink($user->photo->file);
-////            $user->delete();
-////        }
-////        return back()->withStatus(__('User successfully deleted.'));
-//    }
+    public function delete(Request $request)
+    {
+
+        $users = User::findOrFail($request->checkBoxArray);
+        dd($users);
+//        foreach ($users as $user){
+//            unlink($user->photo->file);
+//            $user->delete();
+//        }
+//        return back()->withStatus(__('User successfully deleted.'));
+    }
 
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-//        if($user->photo){
-//            $user->photo->file->delete();
-//        }
+        if($user->photo){
+            unlink($user->photo->file);
+        }
         $user->delete();
         return back()->withStatus(__('User successfully deleted.'));
     }

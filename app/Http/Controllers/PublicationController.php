@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Author;
+use App\Http\Requests\PublicationRequest;
 use App\Publication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -19,7 +20,8 @@ class PublicationController extends Controller
     {
         //
         $publications = Publication::orderBy('created_at', 'asc')->paginate(10);
-        return view('admin.publications.index', compact('publications'));
+        $publication_trashed = Publication::onlyTrashed()->get();
+        return view('admin.publications.index', compact('publications', 'publication_trashed'));
     }
 
     /**
@@ -111,12 +113,57 @@ class PublicationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function trash()
+    {
+        //
+        $publicationsTrashCount = count(Publication::onlyTrashed()->get());
+        $publicationsCount = count(Publication::all());
+        $publications = Publication::onlyTrashed()->paginate(15);
+        return view('admin.publications.trash', compact('publications', 'publicationsCount', 'publicationsTrashCount'));
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return string
+     */
+    public function trash_process(Request $request)
+    {
+        //
+        $publications = Publication::findOrFail($request->checkBoxArray);
+        $option = $request->select;
+
+        foreach ($publications as $publication){
+            if ($option == 'restore'){
+                $publication->restore();
+                return back()->withStatus('Restored Successfully.');
+            }
+            elseif ($option == 'delete'){
+                $publication->forcedelete();
+                return back()->withStatus('Permanently deleted.');
+            }
+            else{
+                return back();
+            }
+        }
+
+
+
+
     }
 
     /**
@@ -130,6 +177,8 @@ class PublicationController extends Controller
         //
         $publications = Publication::findOrFail($request->checkBoxArray);
         foreach ($publications as $publication){
+            $authors = $publication->authors;
+            $publication->authors()->detach($authors);
             $publication->delete();
         }
         return back()->withStatus('Publication successfully deleted');

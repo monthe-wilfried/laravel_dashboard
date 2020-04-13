@@ -16,13 +16,13 @@
                     <div class="">
                         {!! Form::open(['method'=>'PUT', 'action'=>['ProfessorshipController@update', $professorship->id]])  !!}
                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                            <label>{{ __('Name') }}</label>
+                            <label>{{ __('Name') }}</label><span class="star"> * </span>
                             <input type="text" name="name" class="form-control {{ $errors->has('name') ? ' has-error' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name', $professorship->name) }}" required>
                             @include('alerts.feedback', ['field' => 'name'])
                         </div>
 
                         <div class="form-group{{ $errors->has('code') ? ' has-danger' : '' }}">
-                            <label>{{ __('Code') }}</label>
+                            <label>{{ __('Code') }}</label><span class="star"> * </span>
                             <input type="text" name="code" class="form-control {{ $errors->has('code') ? ' has-error' : '' }}" placeholder="{{ __('Code') }}" value="{{ old('name', $professorship->code) }}" required>
                             @include('alerts.feedback', ['field' => 'code'])
                         </div>
