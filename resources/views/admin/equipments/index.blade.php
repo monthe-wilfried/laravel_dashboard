@@ -60,11 +60,11 @@
                                         <td>
                                             <input type="checkbox" class="checkBoxes" name="checkBoxArray[]" value="{{$equipment->id}}">
                                         </td>
-                                        <td>{{ $equipment->title }}</td>
+                                        <td><a href="{{ route('front') }}">{{ $equipment->title }}</a></td>
                                         <td>
                                             {{--                                            <span class="article">{{ $publication->content }}</span>--}}
-                                            @if(strlen($equipment->content) > 100)
-                                                {{substr($equipment->content,0,100)}}
+                                            @if(strlen($equipment->content) > 50)
+                                                {{substr($equipment->content,0,50)}}
                                                 <span class="read-more-show hide_content">Read More</span>
                                                 <span class="read-more-content"> {{substr($equipment->content,100,strlen($equipment->content))}}
                                                 <span class="read-more-hide hide_content">Read Less</span> </span>

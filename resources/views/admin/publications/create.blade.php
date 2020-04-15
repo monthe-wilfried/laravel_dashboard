@@ -1,8 +1,5 @@
 @extends('layouts.app', ['page' => __('Create Publication'), 'pageSlug' => 'create_publication'])
 
-@section('styles')
-    <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
-@endsection
 
 @section('content')
     {!! Form::open(['method'=>'POST', 'action'=>'PublicationController@store', 'files'=>true]) !!}

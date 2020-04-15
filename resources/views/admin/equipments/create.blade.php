@@ -24,8 +24,6 @@
                         <textarea id="ckeditor" name="content" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" placeholder="{{ __('Enter content') }}" rows="10" required>{{ old('content') }}</textarea>
                         @include('includes.ckeditor')
                         @include('alerts.feedback', ['field' => 'content'])
-                        <br>
-
                     </div>
                     <br>
                     <div class="form-group{{ $errors->has('professorship') ? ' has-danger' : '' }}">

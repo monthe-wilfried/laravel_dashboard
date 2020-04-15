@@ -91,6 +91,11 @@
 
             </li>
 
+            <li @if ($pageSlug == 'front') class="active " @endif>
+
+            </li>
+
+
             <li @if ($pageSlug == 'media') class="active " @endif>
                 <a href="{{ route('pages.media') }}">
                     <i class="tim-icons icon-image-02"></i>

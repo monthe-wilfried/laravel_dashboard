@@ -16,10 +16,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
 
     /**
      * Show the application dashboard.
@@ -36,4 +36,16 @@ class HomeController extends Controller
         $equipments = count(Equipment::all());
         return view('admin.dashboard', compact('users', 'publications', 'professorships', 'roles', 'photos', 'equipments'));
     }
+
+    /**
+     * Show the equipments on the front page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function front()
+    {
+        $equipments = Equipment::all();
+        return view('front', compact('equipments'));
+    }
+
 }

@@ -19,13 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/front', 'HomeController@front')->name('front');
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::post('ckeditor/image_upload', 'EquipmentController@upload')->name('upload');
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('icons', ['as' => 'pages.icons', 'uses' => 'PageController@icons']);
     Route::get('media', ['as' => 'pages.media', 'uses' => 'PageController@media']);
