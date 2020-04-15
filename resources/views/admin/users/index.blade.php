@@ -50,7 +50,7 @@
 {{--                                        </td>--}}
                                         <td>
                                             <div class="photo">
-                                                <img src="{{ $user->photo->file ?? asset('black').'/img/gravatar.png'  }}" >
+                                                <img src="{{ $user->photo ? asset('black/img/'.$user->photo->file) : asset('black').'/img/gravatar.png'  }}" >
                                             </div>
                                         </td>
                                         <td>{{$user->name}}</td>

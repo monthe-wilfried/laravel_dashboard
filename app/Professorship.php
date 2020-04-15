@@ -16,4 +16,9 @@ class Professorship extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+
+    public function equipments(){
+        return $this->hasMany('App\Equipment');
+    }
+
 }

@@ -77,6 +77,7 @@ class PageController extends Controller
         return view('pages.upgrade');
     }
 
+
     public function media()
     {
         $photos = Photo::paginate(20);
@@ -90,10 +91,9 @@ class PageController extends Controller
     public function delete(Request $request)
     {
         $photo = Photo::findOrFail($request->photo_id);
-
-//        if ($photo->file){
-//            unlink($photo->file);
-//        }
+        if ($photo->file){
+            unlink(Photo::deletePhoto($photo->file));
+        }
         $photo->delete();
         return back()->withStatus('Photo deleted successfully.');
     }

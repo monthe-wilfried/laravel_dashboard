@@ -29,20 +29,26 @@
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Users', 'Professorships', 'Publications'],
+                labels: ['Users', 'Professorships', 'Publications', 'Roles', 'Photos', 'Equipments'],
                 datasets: [{
                     label: 'Data of IMS',
-                    data: [{{$users}}, {{$publications}}, {{$professorships}}],
+                    data: [{{$users}}, {{$professorships}}, {{$publications}}, {{ $roles }}, {{ $photos }}, {{$equipments}}],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)'
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(203, 205, 216, 0.2)',
+                        'rgba(140, 12, 142, 0.2)',
+                        'rgba(155, 127, 55, 0.2)'
 
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(205, 205, 216, 1)',
+                        'rgba(140, 12, 142, 1)',
+                        'rgba(76, 181, 74, 1)'
 
                     ],
                     borderWidth: 1

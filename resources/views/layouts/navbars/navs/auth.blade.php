@@ -49,7 +49,7 @@
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <div class="photo">
-                            <img src="{{ Auth::user()->photo->file ?? asset('black').'/img/gravatar.png'  }}" alt="{{ __('Profile Photo') }}">
+                            <img src="{{ Auth::user()->photo ? asset('black/img/'.Auth::user()->photo->file) : asset('black/img/gravatar.png')  }}" alt="{{ __('Profile Photo') }}">
                         </div>
                         <b class="caret d-none d-lg-block d-xl-block"></b>
                         <p class="d-lg-none">{{ __('Log out') }}</p>

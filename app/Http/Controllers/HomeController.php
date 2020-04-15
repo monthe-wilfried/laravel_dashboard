@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Equipment;
+use App\Photo;
 use App\Professorship;
 use App\Publication;
+use App\Role;
 use App\User;
 
 class HomeController extends Controller
@@ -28,6 +31,9 @@ class HomeController extends Controller
         $users = count(User::all());
         $publications = count(Publication::all());
         $professorships = count(Professorship::all());
-        return view('admin.dashboard', compact('users', 'publications', 'professorships'));
+        $roles = count(Role::all());
+        $photos = count(Photo::all());
+        $equipments = count(Equipment::all());
+        return view('admin.dashboard', compact('users', 'publications', 'professorships', 'roles', 'photos', 'equipments'));
     }
 }

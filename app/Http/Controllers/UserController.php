@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('name', 'asc')->paginate(15);
+        $users = User::orderBy('name', 'asc')->paginate(20);
         return view('admin.users.index', compact('users'));
     }
     /**
@@ -116,7 +116,8 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         if($user->photo){
-            unlink($user->photo->file);
+            unlink(Photo::deletePhoto($user->photo->file));
+            Photo::findOrFail($user->photo_id)->delete();
         }
         $user->delete();
         return back()->withStatus(__('User successfully deleted.'));

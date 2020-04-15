@@ -95,7 +95,7 @@
                             <div class="block block-three"></div>
                             <div class="block block-four"></div>
                             <a href="#">
-                                <img class="avatar" src="{{ $user->photo->file ?? asset('black').'/img/gravatar.png'}}">
+                                <img class="avatar" src="{{ $user->photo ? asset('black/img/'.$user->photo->file) : asset('black').'/img/gravatar.png'}}">
                                 <h5 class="title">{{ $user->name }}</h5>
                             </a>
                             <p class="description">

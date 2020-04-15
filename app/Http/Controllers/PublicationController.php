@@ -19,7 +19,7 @@ class PublicationController extends Controller
     public function index()
     {
         //
-        $publications = Publication::orderBy('created_at', 'asc')->paginate(10);
+        $publications = Publication::orderBy('created_at', 'asc')->paginate(20);
         $publication_trashed = Publication::onlyTrashed()->get();
         return view('admin.publications.index', compact('publications', 'publication_trashed'));
     }

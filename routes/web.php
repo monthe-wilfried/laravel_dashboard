@@ -23,6 +23,7 @@ Auth::routes();
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::post('ckeditor/image_upload', 'EquipmentController@upload')->name('upload');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/home', 'HomeController@index')->name('home');
@@ -42,6 +43,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('publication/trash', ['as'=>'publication.trash', 'uses'=>'PublicationController@trash']);
     Route::delete('publication/process', ['as'=>'publication.process', 'uses'=>'PublicationController@trash_process']);
     Route::delete('publication/delete', ['as'=>'publication.delete', 'uses'=>'PublicationController@delete']);
+    Route::resource('equipments', 'EquipmentController');
+    Route::delete('equipment/delete', ['as'=>'equipment.delete', 'uses'=>'EquipmentController@delete']);
     Route::resource('roles', 'RoleController');
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);

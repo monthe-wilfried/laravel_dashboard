@@ -45,7 +45,7 @@
 {{--                                        <td>--}}
 {{--                                            <input type="checkbox" class="checkBoxes" name="checkBoxArray[]" value="{{$photo->id}}">--}}
 {{--                                        </td>--}}
-                                        <td><img src="{{ $photo->file ?? asset('black').'/img/gravatar.png'  }}" >
+                                        <td><img style="height: 80px;" src="{{ asset('black/img/'.$photo->file) ?? asset('black').'/img/gravatar.png'  }}" >
                                         <td>{{$photo->file}}</td>
                                         <td>{{$photo->created_at->diffForHumans() ?? 'No date available'}}</td>
                                         <td class="text-right">

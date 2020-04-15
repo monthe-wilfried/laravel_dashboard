@@ -8,7 +8,7 @@
                     <div class="col-lg-5 col-md-6">
                         <h1 class="text-white">{{ __('Intelligente multimediale Systeme') }}</h1>
                         <p class="text-lead text-light">
-                            {{ __('Use this platform to create Publications and Equipments') }}
+                            {{ __('Use this platform to create Publications and equipments') }}
                             <img src="{{ asset('black') }}/img/cyber.jpg" alt="">
                         </p>
                     </div>

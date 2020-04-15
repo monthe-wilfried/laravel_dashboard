@@ -12,18 +12,15 @@ class Photo extends Model
         'file'
     ];
 
-    protected $uploads = '/img/';
-
     public function imageable()
     {
         return $this->morphTo('App\Photo', 'imageable');
 
     }
 
-    // Accessor
-    public function getFileAttribute($photo)
+    // Method is delete Photo from server i:e from the public directory
+    public static function deletePhoto($photo)
     {
-//        return public_path('black'.$this->uploads.$photo);
-        return asset('black').$this->uploads.$photo;
+        return public_path('black/img/'.$photo);
     }
 }
