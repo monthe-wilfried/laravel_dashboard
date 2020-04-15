@@ -74,6 +74,9 @@
             <li @if ($pageSlug == 'equipment_edit') class="active " @endif>
 
             </li>
+            <li @if ($pageSlug == 'equipments_trash') class="active " @endif>
+
+            </li>
             <li @if ($pageSlug == 'roles') class="active " @endif>
                 <a href="{{ route('roles.index') }}">
                     <i class="tim-icons icon-tag"></i>

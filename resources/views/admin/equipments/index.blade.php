@@ -28,7 +28,7 @@
                     <br>
                     <div class="col-sm-4">
                         <a href="{{ route('equipments.index') }}" class="upper_links"><i class="far fa-check-circle"></i> Published ({{ count($equipments)}})</a> |
-                        <a href="" class="upper_links"><i class="fas fa-trash-alt"></i> Trash ()</a>
+                        <a href="{{ route('equipment.trash') }}" class="upper_links"><i class="fas fa-trash-alt"></i> Trash ({{ count($equipment_trashed) }})</a>
                     </div>
 
                     <div class="card-body">
@@ -81,12 +81,6 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                     <a class="dropdown-item" href="{{route('equipments.edit', $equipment->id)}}">Edit</a>
-                                                    <hr>
-                                                    <form action="{{route('equipments.destroy', $equipment->id)}}" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <input style="cursor: pointer" type="submit" value="Delete" class="dropdown-item">
-                                                    </form>
                                                 </div>
                                             </div>
                                         </td>

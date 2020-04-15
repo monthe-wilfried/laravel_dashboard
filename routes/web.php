@@ -44,6 +44,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('publication/process', ['as'=>'publication.process', 'uses'=>'PublicationController@trash_process']);
     Route::delete('publication/delete', ['as'=>'publication.delete', 'uses'=>'PublicationController@delete']);
     Route::resource('equipments', 'EquipmentController');
+    Route::get('equipment/trash', ['as'=>'equipment.trash', 'uses'=>'EquipmentController@trash']);
+    Route::delete('equipment/process', ['as'=>'equipment.process', 'uses'=>'EquipmentController@trash_process']);
     Route::delete('equipment/delete', ['as'=>'equipment.delete', 'uses'=>'EquipmentController@delete']);
     Route::resource('roles', 'RoleController');
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);

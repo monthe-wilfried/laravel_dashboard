@@ -143,26 +143,32 @@ class PublicationController extends Controller
      */
     public function trash_process(Request $request)
     {
-        //
-        $publications = Publication::findOrFail($request->checkBoxArray);
+
+        $publication_ids = $request->checkBoxArray;
         $option = $request->select;
 
-        foreach ($publications as $publication){
-            if ($option == 'restore'){
-                $publication->restore();
-                return back()->withStatus('Restored Successfully.');
+        if($option == 'delete' and $publication_ids){
+            foreach ($publication_ids as $publication_id){
+                $publication = Publication::onlyTrashed()->whereId($publication_id)->first();
+                $authors = $publication->authors;
+                $publication->authors()->detach($authors);
+                foreach ($authors as $author){
+                    $author->delete();
+                }
+                $publication->forceDelete();
             }
-            elseif ($option == 'delete'){
-                $publication->forcedelete();
-                return back()->withStatus('Permanently deleted.');
-            }
-            else{
-                return back();
-            }
+            return back()->withStatus('Publication permanently deleted.');
         }
-
-
-
+        elseif ($option == 'restore' and $publication_ids){
+            foreach ($publication_ids as $publication_id){
+                $publication = Publication::onlyTrashed()->whereId($publication_id)->first();
+                $publication->restore();
+            }
+            return back()->withStatus('Publication successfully restored.');
+        }
+        else{
+            return back();
+        }
 
     }
 
@@ -177,9 +183,12 @@ class PublicationController extends Controller
         //
         $publications = Publication::findOrFail($request->checkBoxArray);
         foreach ($publications as $publication){
-            $authors = $publication->authors;
-            $publication->authors()->detach($authors);
             $publication->delete();
+//            $authors = $publication->authors;
+//            $publication->authors()->detach($authors);
+//            foreach ($authors as $author){
+//                $author->delete();
+//            }
         }
         return back()->withStatus('Publication successfully deleted');
     }

@@ -24,11 +24,13 @@
                                 <a href="{{route('publications.create')}}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Publication</a>
                             </div>
                         </div>
-                    </div>
-                    <br>
-                    <div class="col-sm-4">
-                        <a href="{{ route('publications.index') }}" class="upper_links"><i class="far fa-check-circle"></i> Published ({{ count($publications)}})</a> |
-                        <a href="{{ route('publication.trash') }}" class="upper_links"><i class="fas fa-trash-alt"></i> Trash ({{ count($publication_trashed)}})</a>
+                        <br>
+                        <div class="row">
+                            <div class="col-4">
+                                <a href="{{ route('publications.index') }}" class="upper_links"><i class="far fa-check-circle"></i> Published ({{ count($publications)}})</a> |
+                                <a href="{{ route('publication.trash') }}" class="upper_links"><i class="fas fa-trash-alt"></i> Trash ({{ count($publication_trashed)}})</a>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card-body">

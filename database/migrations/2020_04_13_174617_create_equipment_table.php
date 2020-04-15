@@ -17,7 +17,7 @@ class CreateEquipmentTable extends Migration
             $table->id();
             $table->integer('professorship_id');
             $table->string('title');
-            $table->string('content');
+            $table->text('content');
             $table->timestamps();
             $table->softDeletes();
         });

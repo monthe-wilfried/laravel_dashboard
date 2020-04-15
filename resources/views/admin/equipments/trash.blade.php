@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => __('All Publications'), 'pageSlug' => 'trash'])
+@extends('layouts.app', ['page' => __('All equipments'), 'pageSlug' => 'equipments_trash'])
 
 @section('styles')
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -13,22 +13,22 @@
     <div class="content">
         <div class="row">
             <div class="col-sm-12">
-                {{ Form::open(['method'=>'DELETE', 'action'=>'PublicationController@trash_process', 'class'=>'form-inline']) }}
+                {{ Form::open(['method'=>'DELETE', 'action'=>'EquipmentController@trash_process', 'class'=>'form-inline']) }}
                 <div class="card ">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-8">
-                                <h4 class="card-title">Publications - Trash <i class="fas fa-trash-alt"></i></h4>
+                                <h4 class="card-title">Equipments - Trash <i class="fas fa-trash-alt"></i></h4>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{route('publications.create')}}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Publication</a>
+                                <a href="{{route('equipments.create')}}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Equipment</a>
                             </div>
                         </div>
                     </div>
                     <br>
                     <div class="col-sm-4">
-                        <a href="{{ route('publications.index') }}" class="upper_links"><i class="far fa-check-circle"></i> Published ({{ $publicationsCount }})</a> |
-                        <a href="{{ route('publication.trash') }}" class="upper_links"><i class="fas fa-trash-alt"></i> Trash ({{ $publicationsTrashCount }})</a>
+                        <a href="{{ route('equipments.index') }}" class="upper_links"><i class="far fa-check-circle"></i> Published ({{ $equipmentsCount }})</a> |
+                        <a href="{{ route('equipment.trash') }}" class="upper_links"><i class="fas fa-trash-alt"></i> Trash ({{ $trashCount }})</a>
                     </div>
 
                     <div class="card-body">
@@ -37,8 +37,8 @@
 
                         <div class="form-group">
                             <select class="back-color form-control" name="select" id="">
-                                <option value="">Select action ...</option>
-                                <option value="restore">Restore</option>
+                                <option value="">Select action...</option>
+                                <option value="restore">Resore</option>
                                 <option value="delete">Delete Permanently</option>
                             </select>
                             <input style="margin-left: 5px" type="submit" class="btn-sm btn-primary">
@@ -51,41 +51,30 @@
                                     </th>
                                     <th scope="col">Title</th>
                                     <th scope="col">Content</th>
-                                    <th scope="col">Authors</th>
-                                    <th scope="col">Publication Year</th>
+                                    <th scope="col">Professorship</th>
                                     <th scope="col">Deleted Date</th>
                                 </tr></thead>
                                 <tbody>
 
-                                @foreach($publications as $publication)
+                                @foreach($equipments as $equipment)
                                     <tr>
                                         <td>
-                                            <input type="checkbox" class="checkBoxes" name="checkBoxArray[]" value="{{$publication->id}}">
+                                            <input type="checkbox" class="checkBoxes" name="checkBoxArray[]" value="{{$equipment->id}}">
                                         </td>
-                                        <td>{{ $publication->title }}</td>
+                                        <td>{{ $equipment->title }}</td>
                                         <td>
                                             {{--                                            <span class="article">{{ $publication->content }}</span>--}}
-                                            @if(strlen($publication->content) > 100)
-                                                {{substr($publication->content,0,100)}}
+                                            @if(strlen($equipment->content) > 100)
+                                                {{substr($equipment->content,0,100)}}
                                                 <span class="read-more-show hide_content">Read More</span>
-                                                <span class="read-more-content"> {{substr($publication->content,100,strlen($publication->content))}}
+                                                <span class="read-more-content"> {{substr($equipment->content,100,strlen($equipment->content))}}
                                                 <span class="read-more-hide hide_content">Read Less</span> </span>
                                             @else
-                                                {{$publication->content}}
+                                                {{$equipment->content}}
                                             @endif
                                         </td>
-                                        <td>
-                                            @if($publication->authors)
-                                                @foreach($publication->authors as $author)
-                                                    <a href="">{{ $author->name }}</a>
-                                                    @if(count($publication->authors) > 1)
-                                                        |
-                                                    @endif
-                                                @endforeach
-                                            @endif
-                                        </td>
-                                        <td>{{ $publication->year }}</td>
-                                        <td>{{ $publication->deleted_at->diffForHumans() ?? 'No date' }}</td>
+                                        <td>{{ $equipment->professorship->name ?? 'Not Available' }}</td>
+                                        <td>{{ $equipment->deleted_at->diffForHumans() ?? 'No date' }}</td>
                                     </tr>
                                 @endforeach
 
@@ -93,7 +82,7 @@
                             </table>
                             {{ Form::close() }}
                         </div>
-                        <div style="padding-left: 50%">{{$publications->render()}}</div>
+                        <div style="padding-left: 50%">{{$equipments->render()}}</div>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Equipment;
+use App\Http\Requests\EquipmentRequest;
 use App\Professorship;
+use App\Publication;
 use Illuminate\Http\Request;
 
 class EquipmentController extends Controller
@@ -17,7 +19,8 @@ class EquipmentController extends Controller
     {
         //
         $equipments = Equipment::orderBy('created_at', 'asc')->paginate(20);
-        return view('admin.equipments.index', compact('equipments'));
+        $equipment_trashed = Equipment::onlyTrashed()->get();
+        return view('admin.equipments.index', compact('equipments', 'equipment_trashed'));
 
     }
 
@@ -39,9 +42,15 @@ class EquipmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EquipmentRequest $request)
     {
         //
+        $equipment = $request->all();
+        if ($equipment){
+            Equipment::create($equipment);
+        }
+        return redirect()->route('equipments.index')->withStatus('Equipment successfully created.');
+
     }
 
     /**
@@ -59,11 +68,14 @@ class EquipmentController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
         //
+        $equipment = Equipment::findOrFail($id);
+        $professorships = Professorship::pluck('name', 'id')->all();
+        return view('admin.equipments.edit', compact('equipment', 'professorships'));
     }
 
     /**
@@ -73,9 +85,13 @@ class EquipmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EquipmentRequest $request, $id)
     {
         //
+        $inputs = $request->all();
+        $equipment = Equipment::findOrFail($id);
+        $equipment->update($inputs);
+        return redirect()->route('equipments.index')->withStatus('Equipment successfully updated.');
     }
 
     /**
@@ -84,9 +100,14 @@ class EquipmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete()
+    public function delete(Request $request)
     {
         //
+        $equipments = Equipment::findOrFail($request->checkBoxArray);
+        foreach ($equipments as $equipment){
+            $equipment->delete();
+        }
+        return back()->withStatus('Equipment successfully deleted.');
     }
 
     /**
@@ -130,4 +151,52 @@ class EquipmentController extends Controller
         }
 
     }
+
+    /**
+     * Show the trash view
+     *
+     * @param  int  $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function trash()
+    {
+        //
+        $equipmentsCount = count(Equipment::all());
+        $trashCount = count(Equipment::onlyTrashed()->get());
+        $equipments = Equipment::onlyTrashed()->paginate(20);
+        return view('admin.equipments.trash', compact('equipmentsCount', 'trashCount', 'equipments'));
+    }
+
+    /**
+     * Restore and permanently delete the trashed records
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function trash_process(Request $request)
+    {
+        //
+        $equipment_ids = $request->checkBoxArray;
+        $option = $request->select;
+
+        if($option == 'delete' and $equipment_ids){
+            foreach ($equipment_ids as $equipment_id){
+                $equipment = Equipment::onlyTrashed()->whereId($equipment_id)->first();
+                $equipment->forceDelete();
+            }
+            return back()->withStatus('Equipment permanently deleted.');
+        }
+        elseif ($option == 'restore' and $equipment_ids){
+            foreach ($equipment_ids as $equipment_id){
+                $equipment = Equipment::onlyTrashed()->whereId($equipment_id)->first();
+                $equipment->restore();
+            }
+            return back()->withStatus('Equipment successfully restored.');
+        }
+        else{
+            return back();
+        }
+    }
+
+
 }

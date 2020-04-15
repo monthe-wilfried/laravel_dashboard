@@ -27,8 +27,8 @@
 
                     <div class="form-group{{ $errors->has('content') ? ' has-danger' : '' }}">
                         <label>{{ __('Content') }}</label><span class="star"> * </span>
-                        <textarea name="content" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" placeholder="{{ __('Enter content') }}" rows="10" required>{{ old('content') }}</textarea>
-                        <script>CKEDITOR.replace( 'content' );</script>
+                        <textarea id="ckeditor" name="content" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" placeholder="{{ __('Enter content') }}" rows="10" required>{{ old('content') }}</textarea>
+                        @include('includes.ckeditor')
                         @include('alerts.feedback', ['field' => 'content'])
                     </div>
 
